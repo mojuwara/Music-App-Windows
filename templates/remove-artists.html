@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Remove From Liked Artists</title>
+  </head>
+  <div class="nav">
+    <a href="profile">Profile</a>
+    <a href="/new-music">New Music</a>
+    <a href="/add-artists">Like Artists</a>
+    <a href="/dislike-artists">Dislike Artists</a>
+    <a href="/remove-artists">Remove Liked Artists</a>
+    <a href="/show-again">Remove Disliked Artists</a>
+    <a href="/log-out">Log Out</a>
+  </div>
+  <body>
+    <h1>Remove Artists You've Liked Before</h1>
+    <p><strong>You may control-click (Windows) or command-click (Mac) 
+      to select more than one.</strong></p>
+    <form action="/remove-artists" method="POST">
+      <select name="Artists" multiple="multiple" size=20>
+        {% for musician in artists %}
+          <option value="{{ musician.artist }}">{{ musician.artist }}</option>
+        {% endfor %}
+      </select>
+    <input type="submit">
+    </form>
+  </body>
+</html>

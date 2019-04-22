@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Music</title>
+  </head>
+  <div class="nav">
+    <a href="profile">Profile</a>
+    <a href="/new-music">New Music</a>
+    <a href="/add-artists">Like Artists</a>
+    <a href="/dislike-artists">Dislike Artists</a>
+    <a href="/remove-artists">Remove Liked Artists</a>
+    <a href="/show-again">Remove Disliked Artists</a>
+    <a href="/log-out">Log Out</a>
+  </div>
+  <body>
+    <h1>New Music</h1>
+    <ul>
+      {% for song in songs %}
+        {% if song["features"] != "" %}
+          <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}
+            feat {{ song["features"] }}</li>
+        {% else %}
+          <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+run the app:
+  /usr/local/bin/python3 /Users/Student/Website/app.py
+
+Activate environment:
+  source myenv/bin/activate
+
+install packages:
+  sudo python3 -m pip install <package>
+
+"""
+Navigate to MAMP; START MySQL Server: 
+cd .. .. ..; cd /Applications/MAMP/bin && ./start.sh
+
+Navigate to MAMP; STOP MySQL Server: 
+cd .. .. ..; cd /Applications/MAMP/bin && ./stop.sh
+
+activate virtualenv; fetch data; deactivate virtualenv
+cd Website/;source myenv/bin/activate; /usr/local/bin/python3 /Users/Student/Website/models.py add_data; deactivate
+"""

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+  </head>
+  <a href="/">Home</a>
+  <a href="/log-in">Log In</a>
+  <body>
+    <form action = "/register_auth", method = "POST">
+      {% if error %}
+		    <p class="error"><strong>Error:</strong> {{error}}</p>
+  	  {% endif %}
+      <input placeholder="username" name="username">
+      <input type="password" placeholder="password" name="password">
+      <input type = "submit" value = "Register" >
+    </form>
+  </body>
+</html>
