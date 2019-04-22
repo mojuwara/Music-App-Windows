@@ -13,16 +13,19 @@
     <a href="/log-out">Log Out</a>
   </div>
   <body>
-    <h1>New Music</h1>
+  <h1>New Music</h1>
+  {% for artist in songs %}
+    <h2>{{ artist[0]["artist"] }}</h2>
     <ul>
-      {% for song in songs %}
+      {% for song in artist[1] %}
         {% if song["features"] != "" %}
           <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}
-            feat {{ song["features"] }}</li>
+              feat {{ song["features"] }}</a></li>
         {% else %}
-          <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}</li>
+          <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}</a></li>
         {% endif %}
       {% endfor %}
     </ul>
+  {% endfor %}
   </body>
 </html>

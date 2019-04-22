@@ -1,10 +1,11 @@
 class Song:
-  def __init__(self, song_name, artist, features, release_date, link):
+  def __init__(self, song_name, artist, features_string, release_date, link, features_list):
     self.song_name = song_name
     self.artist = artist
-    self.features = features        # List object (possibly empty)
+    self.features_string = features_string        # String object (possibly empty)
     self.release_date = release_date
     self.link = link
+    self.features_list = features_list            # List object (possibly empty)
   
   def get_song_name(self):
     return self.song_name
@@ -18,5 +19,8 @@ class Song:
   def get_link(self):
     return self.link
   
-  def get_features(self):
-    return self.features
+  def get_features_string(self):
+    return self.features_string
+
+  def get_features_list(self):
+    return self.features_list

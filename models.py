@@ -60,8 +60,12 @@ def store_new_artists(username, artist_list):
   conn.commit()
   conn.close() 
 
-# Will return a list of dictionaries that contain information about 
-# songs made by artists the user likes
+""" 
+    Returns a list, that contains a list for every artist liked by the user, 
+    where the first element is a dictionary of {'artist': value},
+    And the second element is a LIST, that contains DICTIONARIE(S), 
+    of each song involving that artist
+"""
 def search_new_songs(username):
   conn = pymysql.connect(host="localhost", port=8889, user="root", 
       password="root", db="Music", charset="utf8mb4", 
@@ -77,7 +81,9 @@ def search_new_songs(username):
     cursor.execute(liked_artist_query, (username))
     for artist in cursor.fetchall():
       cursor.execute(artist_songs_query, (artist["artist"], "%" + artist["artist"] + "%"))
-      results.extend(cursor.fetchall())
+      songs = cursor.fetchall()
+      if (len(songs) != 0):
+        results.append([artist, songs])
 
   conn.commit()
   conn.close()
