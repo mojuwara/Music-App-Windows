@@ -14,18 +14,18 @@
   </div>
   <body>
   <h1>New Music</h1>
-    {% for artist in songs %}
-      <h3>{{ artist[0]["artist"] }}</h3>
-      <ul>
-        {% for song in artist[1] %}
-          {% if song["features"] != "" %}
-            <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}
-                feat {{ song["features"] }}</li>
-          {% else %}
-            <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}</li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endfor %}
+  {% for artist in songs %}
+    <h2>{{ artist[0]["artist"] }}</h2>
+    <ul>
+      {% for song in artist[1] %}
+        {% if song["features"] != "" %}
+          <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}
+              feat {{ song["features"] }}</a></li>
+        {% else %}
+          <li><a href={{ song["link"] }} target="_blank">{{ song["artist"] }} - {{ song["song_name"] }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endfor %}
   </body>
 </html>
