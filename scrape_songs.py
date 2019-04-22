@@ -22,13 +22,14 @@ def add_data(pages=1):
     for song in song_list:
       with conn.cursor() as cursor:
         try:
-          print("{} : {} : feat.{} : {}".format(song.get_artist(), song.get_song_name(), song.get_features(), song.get_link()))
           cursor.execute(insert_artist_query, (song.get_artist(), "Hip-Hop/Rap", song.get_artist()))
           cursor.execute(insert_song_query, (song.get_artist(), song.get_song_name(), 
-          song.get_features(), "Hip-Hop/Rap", song.get_link(), song.get_release_date()))
+              song.get_features_string(), "Hip-Hop/Rap", song.get_link(), song.get_release_date()))
+          for feature in song.get_features_list():
+            cursor.execute(insert_artist_query, (feature, "Hip-Hop/Rap", feature))
           conn.commit()
         except:
-          print("{} : {} : feat.{} : {}".format(song.get_artist(), song.get_song_name(), song.get_features(), song.get_link()))
+          print("{} : {} : feat.{} : {}".format(song.get_artist(), song.get_song_name(), song.get_features_string(), song.get_link()))
 
   conn.close()
 

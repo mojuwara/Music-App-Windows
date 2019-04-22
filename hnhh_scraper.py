@@ -30,7 +30,7 @@ class HNHHScraper:
         for feature in group.findAll("em", {"class" : "no-bold"}):
           if feature not in self.excluded:
             features_list.append(feature.text.strip()) 
-        features_list = ", ".join(features_list)
+        features_string = ", ".join(features_list)
 
       # Extract the release date of the song & find out if this is a throwback
       for meta_data in song.findAll("div", {"class" : "grid-item-meta-info hidden-md-down"}):
@@ -47,7 +47,7 @@ class HNHHScraper:
       
       # Append to song list
       if (not throwback):
-        song_list.append(Song(song_name, main_artists, features_list, release_date, song_page))
+        song_list.append(Song(song_name, main_artists, features_string, release_date, song_page, features_list))
       else:
         print("Throwback:\t {} : {} : {}".format(main_artists, song_name, song_page))
 
