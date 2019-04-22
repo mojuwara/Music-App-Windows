@@ -60,8 +60,11 @@ def store_new_artists(username, artist_list):
   conn.commit()
   conn.close() 
 
-""" Returns a list, that contains LIST(S), where the first element is a dictionary of {'artist': value}
-    And the second element is a LIST, that contains DICTIONARIE(S), of each song involving that artist
+""" 
+    Returns a list, that contains a list for every artist liked by the user, 
+    where the first element is a dictionary of {'artist': value},
+    And the second element is a LIST, that contains DICTIONARIE(S), 
+    of each song involving that artist
 """
 def search_new_songs(username):
   conn = pymysql.connect(host="localhost", port=8889, user="root", 
