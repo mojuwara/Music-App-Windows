@@ -1,4 +1,3 @@
-/*
 DROP DATABASE IF EXISTS Music;
 CREATE DATABASE Music;
 USE Music;
@@ -28,6 +27,7 @@ CREATE TABLE Artists (
 
 DROP TABLE IF EXISTS Songs;
 CREATE TABLE Songs (
+    songID INT NOT NULL AUTO_INCREMENT,
     artist VARCHAR(300) NOT NULL,
     song_name VARCHAR(300) NOT NULL,
     features VARCHAR(300) NOT NULL,
@@ -36,7 +36,17 @@ CREATE TABLE Songs (
     release_date DATE NOT NULL,
     FOREIGN KEY (artist) REFERENCES Artists(artist) ON DELETE  CASCADE,
     FOREIGN KEY (genre) REFERENCES Genres(genre) ON DELETE CASCADE,
-    PRIMARY KEY (artist, song_name, link)
+    PRIMARY KEY (songID, link)
+) ENGINE INNODB;
+
+DROP TABLE IF EXISTS Collaborations;
+CREATE TABLE Collaborations (
+    main_artist VARCHAR(300) NOT NULL,
+    feature VARCHAR(300) NOT NULL,
+    songID INT,
+    FOREIGN KEY (main_artist) REFERENCES Artists(artist) ON DELETE CASCADE,
+    FOREIGN KEY (feature) REFERENCES Artists(artist) ON DELETE CASCADE,
+    PRIMARY KEY (main_artist, feature, songID)
 ) ENGINE INNODB;
 
 DROP TABLE IF EXISTS Likes;
@@ -56,4 +66,3 @@ CREATE TABLE Dislikes (
     FOREIGN KEY (artist) REFERENCES Artists(artist) ON DELETE CASCADE,
     PRIMARY KEY (username, artist)
 ) ENGINE INNODB;
-*/

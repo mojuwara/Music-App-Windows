@@ -71,19 +71,16 @@ def search_new_songs(username):
       password="root", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
-  liked_artist_query = "SELECT artist FROM Likes WHERE username=%s"
+  songs_query = "SELECT * FROM Songs WHERE artist IN \
+	                  (SELECT artist FROM Likes WHERE username = %s)\
+                OR songID IN \
+	                  (SELECT songID FROM Collaborations WHERE feature IN \
+     	                  (SELECT artist FROM Likes WHERE username = %s))\
+                ORDER BY release_date DESC;"
 
-  artist_songs_query = "SELECT * FROM Songs WHERE artist = %s or features LIKE %s \
-                          ORDER BY `release_date` DESC"
-
-  results=[]
   with conn.cursor() as cursor:
-    cursor.execute(liked_artist_query, (username))
-    for artist in cursor.fetchall():
-      cursor.execute(artist_songs_query, (artist["artist"], "%" + artist["artist"] + "%"))
-      songs = cursor.fetchall()
-      if (len(songs) != 0):
-        results.append([artist, songs])
+    cursor.execute(songs_query, (username, username))
+    results = cursor.fetchall()
 
   conn.commit()
   conn.close()
