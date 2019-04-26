@@ -132,4 +132,6 @@ def show_again():
     return render_template("profile.html", name=session["user"])
 
 if __name__ == "__main__":
+  # Start up MAMP
+  os.system("cd ../../; cd /Applications/MAMP/bin && ./start.sh")
   app.run(debug=True)

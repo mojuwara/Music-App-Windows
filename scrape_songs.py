@@ -16,6 +16,11 @@ def add_data(pages=1):
                         FROM DUAL WHERE NOT EXISTS \
                         (SELECT * FROM Artists WHERE artist= %s)"
 
+  insert_collab_query = "INSERT INTO Collaborations(main_artist, feature, songID) \
+      VALUES (%s, %s, %s)"
+
+  song_id_query = "SELECT songID FROM Songs WHERE link = %s"
+
   scraper = HNHHScraper()
   for i in range(pages):
     song_list = scraper.scrape_songs(i)
@@ -25,8 +30,12 @@ def add_data(pages=1):
           cursor.execute(insert_artist_query, (song.get_artist(), "Hip-Hop/Rap", song.get_artist()))
           cursor.execute(insert_song_query, (song.get_artist(), song.get_song_name(), 
               song.get_features_string(), "Hip-Hop/Rap", song.get_link(), song.get_release_date()))
+          
+          cursor.execute(song_id_query, (song.get_link()))
+          id = int(cursor.fetchone()["songID"])
           for feature in song.get_features_list():
             cursor.execute(insert_artist_query, (feature, "Hip-Hop/Rap", feature))
+            cursor.execute(insert_collab_query, (song.get_artist(), feature, id))
           conn.commit()
         except:
           print("{} : {} : feat.{} : {}".format(song.get_artist(), song.get_song_name(), song.get_features_string(), song.get_link()))
