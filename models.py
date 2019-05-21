@@ -5,8 +5,8 @@ import hashlib
 def is_user(username, password):
   able_to_login = False
 
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   check_query = "SELECT username, password \
@@ -23,8 +23,8 @@ def is_user(username, password):
 # Return True if a user was able to register. Username is not already being used.
 def is_now_registered(username, password):
   able_to_register = False
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   exists_query = "SELECT username \
@@ -47,8 +47,8 @@ def is_now_registered(username, password):
 # Given a list of artists the user likes, 
 # it will insert this relationship into the "Likes" table in the database
 def store_new_artists(username, artist_list):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4",
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4",
       cursorclass=pymysql.cursors.DictCursor)
   
   store_query = "INSERT INTO Likes(username, artist) \
@@ -67,8 +67,8 @@ def store_new_artists(username, artist_list):
     of each song involving that artist
 """
 def search_new_songs(username):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   songs_query = "SELECT * FROM Songs WHERE artist IN \
@@ -94,8 +94,8 @@ def search_neutral_artists(username):
 				                  and artist NOT IN \
                                 (SELECT artist FROM Dislikes WHERE username = %s)"
   
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   with conn.cursor() as cursor:
@@ -109,8 +109,8 @@ def search_neutral_artists(username):
 # Takes a username and list of artists the user does not like,
 # and then adds them to the Dislike table so songs made by them don't show up 
 def dislike(username, artists):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
       
   dislike_query = "INSERT INTO Dislikes(username, artist)\
@@ -128,8 +128,8 @@ def dislike(username, artists):
       
 # Get artists liked by the user
 def get_liked_artists(username):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   liked_artists_query = "SELECT artist FROM Likes \
@@ -146,8 +146,8 @@ def get_liked_artists(username):
 # Given a list of artists the user no longer likes
 # this will remove them from the liked table
 def remove_from_liked(username, artists):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   remove_artist_query = "DELETE FROM Likes WHERE username=%s AND artist=%s"
@@ -161,8 +161,8 @@ def remove_from_liked(username, artists):
 
 # Get a list of dictionaries of all the artists the user does not like
 def get_disliked_artists(username):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-      password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+      password="", db="Music", charset="utf8mb4", 
       cursorclass=pymysql.cursors.DictCursor)
 
   disliked_artist_query = "SELECT artist FROM Dislikes WHERE username = %s"
@@ -177,8 +177,8 @@ def get_disliked_artists(username):
 
 # Given a list of artists, will remove the user, artist pair from the Dislikes table
 def remove_from_disliked(username, artists):
-  conn = pymysql.connect(host="localhost", port=8889, user="root", 
-    password="root", db="Music", charset="utf8mb4", 
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+    password="", db="Music", charset="utf8mb4", 
     cursorclass=pymysql.cursors.DictCursor)
 
   remove_artist_query = "DELETE FROM Dislikes WHERE username=%s AND artist=%s"

@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>New Music</title>
-  </head>
-  <div class="nav">
-    <a href="profile">Profile</a>
-    <a href="/new-music">New Music</a>
-    <a href="/add-artists">Like Artists</a>
-    <a href="/dislike-artists">Dislike Artists</a>
-    <a href="/remove-artists">Remove Liked Artists</a>
-    <a href="/show-again">Remove Disliked Artists</a>
-    <a href="/log-out">Log Out</a>
-  </div>
-  <body>
+{% extends "base.html" %}
+{% block title %}New Music{% endblock %}
+
+{% block content %}
   <h1>New Music</h1>
   <ul>
     {% for song in songs %}
@@ -24,5 +13,4 @@
       {% endif %}
     {% endfor %}
   </ul>
-  </body>
-</html>
+{% endblock %}

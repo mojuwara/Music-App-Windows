@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Remove From Disliked Artists</title>
-  </head>
-  <div class="nav">
-    <a href="profile">Profile</a>
-    <a href="/new-music">New Music</a>
-    <a href="/add-artists">Like Artists</a>
-    <a href="/dislike-artists">Dislike Artists</a>
-    <a href="/remove-artists">Remove Liked Artists</a>
-    <a href="/show-again">Remove Disliked Artists</a>
-    <a href="/log-out">Log Out</a>
-  </div>
+{% extends "base.html" %}
+{% block title %}Remove From Disliked Artists{% endblock %}
+
+{% block content %}
   <body>
     <h1>Remove Artists You've Liked Before</h1>
     <p><strong>You may control-click (Windows) or command-click (Mac) 
@@ -24,5 +14,4 @@
       </select>
     <input type="submit">
     </form>
-  </body>
-</html>
+{% endblock %}

@@ -133,5 +133,4 @@ def show_again():
 
 if __name__ == "__main__":
   # Start up MAMP
-  os.system("cd ../../; cd /Applications/MAMP/bin && ./start.sh")
   app.run(debug=True)

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <div class="nav">
+    {% block nav %}
+    <a href="profile">Profile</a>
+    <a href="/new-music">New Music</a>
+    <a href="/add-artists">Like Artists</a>
+    <a href="/dislike-artists">Dislike Artists</a>
+    <a href="/remove-artists">Remove Liked Artists</a>
+    <a href="/show-again">Remove Disliked Artists</a>
+    <a href="/update-phone">Update Phone Number</a>
+    <a href="/log-out">Log Out</a>
+    {% endblock %}
+  </div>
+  <body>{% block content %}{% endblock %}</body>  
+</html>
