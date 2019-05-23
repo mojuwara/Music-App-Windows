@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Update Email{% endblock %}
+
+{% block content %}
+  <h1>Enter the email you would like to notified on</h1>
+  <form action = "/update-email", method = "POST">
+    <input placeholder="Email" name="email">
+    <input type = "submit" value = "Submit" >
+  </form>
+{% endblock %}

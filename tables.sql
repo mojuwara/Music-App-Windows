@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
+    email VARCHAR(50),
     PRIMARY KEY(username)
 ) ENGINE INNODB;
 
@@ -52,9 +53,11 @@ CREATE TABLE Collaborations (
 DROP TABLE IF EXISTS Likes;
 CREATE TABLE Likes (
     username VARCHAR(50) NOT NULL,
+    email VARCHAR(50),
     artist VARCHAR(50) NOT NULL,
     FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE,
     FOREIGN KEY (artist) REFERENCES Artists(artist) ON DELETE CASCADE,
+    FOREIGN KEY (email) REFERENCES Users(email) ON DELETE CASCADE,
     PRIMARY KEY (username, artist)
 ) ENGINE INNODB;
 

@@ -62,6 +62,19 @@ def register_auth():
   error = "The username '{}' is already taken.".format(username)
   return render_template("register.html", error=error)
 
+# Allow a user to enter an email address to check each day if a 
+# song that may interest them is released
+@app.route("/update-email", methods=["POST", "GET"])
+def email():
+  if "user" not in session:
+    return render_template("index.html")
+  elif request.method == "GET":
+    return render_template("email.html")
+  else:
+    email = request.form["email"]
+    update_email(session["user"], email)
+    return render_template("profile.html", name=session["user"])
+
 # User can add new artists to view music from
 @app.route("/add-artists", methods=["POST", "GET"])
 def add_artists():

@@ -190,3 +190,19 @@ def remove_from_disliked(username, artists):
   conn.commit()
   conn.close()
 
+# Will insert their email if no email has been entered for them
+# Otherwise, it will update their current email in the DB to this new one
+def update_email(user, email):
+  conn = pymysql.connect(host="localhost", port=3306, user="root", 
+    password="", db="Music", charset="utf8mb4", 
+    cursorclass=pymysql.cursors.DictCursor)
+
+  update_email_query = "UPDATE users \
+                        SET email = %s \
+                        WHERE username = %s;"
+  
+  with conn.cursor() as cursor:
+    cursor.execute(update_email_query, (email, user))
+    
+  conn.commit()
+  conn.close()

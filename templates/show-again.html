@@ -2,16 +2,15 @@
 {% block title %}Remove From Disliked Artists{% endblock %}
 
 {% block content %}
-  <body>
-    <h1>Remove Artists You've Liked Before</h1>
-    <p><strong>You may control-click (Windows) or command-click (Mac) 
-      to select more than one.</strong></p>
-    <form action="/show-again" method="POST">
-      <select name="Artists" multiple="multiple" size=20>
-        {% for musician in artists %}
-          <option value="{{ musician.artist }}">{{ musician.artist }}</option>
-        {% endfor %}
-      </select>
-    <input type="submit">
-    </form>
+  <h1>Remove Artists You've Liked Before</h1>
+  <p><strong>You may control-click (Windows) or command-click (Mac) 
+    to select more than one.</strong></p>
+  <form action="/show-again" method="POST">
+    <select name="Artists" multiple="multiple" size=20>
+      {% for musician in artists %}
+        <option value="{{ musician.artist }}">{{ musician.artist }}</option>
+      {% endfor %}
+    </select>
+  <input type="submit">
+  </form>
 {% endblock %}
