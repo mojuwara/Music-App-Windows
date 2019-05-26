@@ -32,7 +32,6 @@ def add_data(pages=1):
   new_songs = []
   for i in range(pages):
     song_list = scraper.scrape_songs(i)
-    notify_users(song_list)
     for song in song_list:
       with conn.cursor() as cursor:
         try:
@@ -86,7 +85,8 @@ def notify_users(song_list):
           else:
             content += "<a href={} target='_blank'>{} - {}</a><br><br>".format(song.get_link(),
                 song.get_artist(), song.get_song_name())
-      send_email(person["email"], content)
+      if content != "":
+        send_email(person["email"], content)
   
   conn.close()
 
